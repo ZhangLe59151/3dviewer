@@ -1,6 +1,6 @@
 {
-  "Welcome to Monopoly Game": "Welcome to Monopoly Game",
-  "Game Version": "Game version 1.0.0",
+  "Welcome to App": "Welcome to 3D viewer",
+  "App Version": "Version 1.0.0",
   "User Login": "User Login",
   "Enter your user name": "Enter your user name",
   "Enter your password": "Enter your password",
@@ -18,7 +18,6 @@
   "There are currently no customer waiting": "There is currently no customer waiting.",
   "Customer queue for service 1": "There are {{ num }} customers currently queueing for service.",
   "Downcount call second": "The call with client will start in {{ num }} seconds.",
-  "Video KYC Completed before": "'Your Video KYC process was completed successfully last time. Your record is being reviewed by our agents. You will be notified the result once the review is finished.",
   "Compare selfie": "Compare selfie",
   "Selfie from Previous Application": "Selfie from Previous Application",
   "Selfie from Video Call": "Selfie from Video Call",

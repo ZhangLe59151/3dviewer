@@ -81,6 +81,28 @@ module.exports = (env) => {
             },
           ],
         },
+        {
+          test: /\.mtl$/,
+          loader: 'mtl-loader',
+        },
+        {
+          test: /\.obj$/,
+          // CHANGE HERE
+          loader: 'url-loader',
+          include: path.obj,
+        },
+        {
+          test: /\.(png|gif|jpg|svg)$/,
+          include: path.images,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: 'client/assets/[name]-[hash].[ext]',
+              },
+            },
+          ],
+        },
       ],
     },
     resolve: {
@@ -117,7 +139,7 @@ module.exports = (env) => {
       disableHostCheck: true,
       compress: true,
       proxy: {
-        '/vkyc/v1': {
+        '/api/v1': {
           target: envConfig.BASE_URL,
           changeOrigin: true,
           secure: false,

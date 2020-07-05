@@ -114,9 +114,9 @@ module.exports = (env) => {
       disableHostCheck: true,
       compress: true,
       proxy: {
-        '/vkyc/v1': {
+        '/api/v1': {
           // target: 'https://boss.shopintar.net/',
-          target: 'https://vkyc-staging.advai.net/',
+          target: 'https://xxx.net/',
           changeOrigin: true,
           secure: false,
           xfwd: false,

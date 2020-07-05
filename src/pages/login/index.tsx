@@ -11,107 +11,45 @@ import { IResponseCode, IAgentRole } from 'interface/base';
 import { IResponseLogin } from 'interface/responseLogin';
 import { Wrapper } from './styled';
 import { Layout, Row, Col, Form, Input, Checkbox, Button, Divider, List, Typography } from 'antd';
+import * as THREE from 'three';
 
 const { Header, Footer, Sider, Content } = Layout;
-
-const onChange = async (value: Ilogin) => {
-  try {
-    const response = await instance.post<IResponseLogin>('/login', value);
-    // const response = await instance.get<IResponse>('/bot');
-    // const response = await instance.request({method:"GET", url:"/bot"});
-    if (response.data.code === IResponseCode.SUCCESS) {
-      agentStore.updateLogin(response.data.data);
-      jumpToFirstPage(response.data.data.agent.role);
-      return false;
-    } else {
-      return true;
-    }
-  } catch (e) {
-    console.error('error:', e);
-  }
-};
-
-const jumpToFirstPage = (role: string) => {
-  if (role === IAgentRole.ADMIN) {
-    history.push('/main/adminmenu/');
-  } else {
-    history.push('/main/room/');
-  }
-};
 
 const Login = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    window.history.pushState(null, '', document.URL);
-    agentStore.logout();
+    // === THREE.JS CODE START ===
+    let scene = new THREE.Scene();
+    let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    let renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+    let geometry = new THREE.BoxGeometry(1, 1, 1);
+    let material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    let cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+    camera.position.z = 5;
+    let animate = function() {
+      requestAnimationFrame(animate);
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    };
+    animate();
+    // === THREE.JS EXAMPLE CODE END ===
   }, []);
-
-  const onFinish = () => {};
-
-  const onFinishFailed = () => {};
-
-  const aiPlayerData = ['AI Player 1', 'AI Player 2'];
 
   return useObserver(() => (
     <div>
       <NetworkStateNotifier offlineMessage={t('Offline Msg')} onlineMessage={t('Online Msg')} />
       {/* <LoginForm onChange={onChange} /> */}
       <Layout>
-        <Header style={{ textAlign: 'center', color: '#ffffff' }}>
-          {t('Welcome to Monopoly Game')}
-        </Header>
+        <Header style={{ textAlign: 'center', color: '#ffffff' }}>{t('Welcome to App')}</Header>
         <Content>
-          <Wrapper>
-            <div className="site-layout-content">
-              <Row>
-                <Col span={12}>
-                  <div className="left-plane">
-                    <Form
-                      name="basic"
-                      initialValues={{ remember: true }}
-                      onFinish={onFinish}
-                      onFinishFailed={onFinishFailed}
-                    >
-                      <Form.Item
-                        label={t('Username')}
-                        name="username"
-                        rules={[{ required: true, message: t('UserNamePlacehold') }]}
-                      >
-                        <Input />
-                      </Form.Item>
-
-                      <Form.Item name="remember" valuePropName="checked">
-                        <Checkbox>{t('Remember me')}</Checkbox>
-                      </Form.Item>
-
-                      <Form.Item>
-                        <Button block type="primary" htmlType="submit">
-                          {t('StartGame')}
-                        </Button>
-                      </Form.Item>
-                    </Form>
-                  </div>
-                </Col>
-                <Col span={12}>
-                  <div className="right-plane">
-                    <Divider orientation="center">{t('aiPlayerHead')}</Divider>
-                    <List
-                      bordered
-                      dataSource={aiPlayerData}
-                      renderItem={(item) => (
-                        <List.Item>
-                          <Typography.Text mark>[{t('Player')}]</Typography.Text> {item}
-                        </List.Item>
-                      )}
-                    />
-                  </div>
-                </Col>
-              </Row>
-            </div>
-          </Wrapper>
+          <Wrapper>SS</Wrapper>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>{t('Game Version')}</Footer>
+        <Footer style={{ textAlign: 'center' }}>{t('App Version')}</Footer>
       </Layout>
     </div>
   ));
