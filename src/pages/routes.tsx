@@ -8,7 +8,7 @@ const GameMap = () => <LazyImport load={() => import('pages/map/index')} />;
 const PageRoutes = () => (
   <Switch>
     <Route path="/videocall" component={VideoCallPage} />
-    <Route path="/GameMap" component={GameMap} />
+    <Route path="/map" component={GameMap} />
   </Switch>
 );
 

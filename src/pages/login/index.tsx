@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import React, { useEffect } from 'react';
 import { LoginForm } from 'components/loginForm';
 import { Ilogin } from 'interface/requestBase';
@@ -12,15 +13,41 @@ import { IResponseLogin } from 'interface/responseLogin';
 import { Wrapper } from './styled';
 import { Layout, Row, Col, Form, Input, Checkbox, Button, Divider, List, Typography } from 'antd';
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 const { Header, Footer, Sider, Content } = Layout;
 
 const Login = () => {
   const { t } = useTranslation();
+  let scene = new THREE.Scene();
+
+  const loadTeaModel = () => {
+    let loader = new GLTFLoader();
+    loader.load(
+      'model/teapot_n_glass.glb',
+      function(gltf) {
+        console.info('gltf.scene');
+        console.info(gltf.scene);
+        scene.add(gltf.scene);
+        gltf.animations; // Array<THREE.AnimationClip>
+        gltf.scene; // THREE.Group
+        gltf.scenes; // Array<THREE.Group>
+        gltf.cameras; // Array<THREE.Camera>
+        gltf.asset; // Object
+      },
+      // called while loading is progressing
+      function(xhr) {
+        console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+      },
+      // called when loading has errors
+      function(error) {
+        console.error(error);
+      },
+    );
+  };
 
   useEffect(() => {
     // === THREE.JS CODE START ===
-    let scene = new THREE.Scene();
     let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     let renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -30,10 +57,13 @@ const Login = () => {
     let cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
     camera.position.z = 5;
+    const line = new THREE.Line(geometry, new THREE.LineBasicMaterial());
+    scene.add(line);
+
     let animate = function() {
       requestAnimationFrame(animate);
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+      // cube.rotation.x += 0.01;
+      // cube.rotation.y += 0.01;
       renderer.render(scene, camera);
     };
     animate();

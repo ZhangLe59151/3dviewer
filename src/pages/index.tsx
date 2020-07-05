@@ -22,7 +22,7 @@ const Pages = () => {
     <Switch>
       <Route exact path="/" component={Login} />
       <Route exact path="/login" component={Login} />
-      <Route exact path="/GameMap" component={GameMap} />
+      <Route exact path="/map" component={GameMap} />
       <Route path="/main/:component*" component={Main} />
       <Route render={() => <Redirect to={'/'} />} />
     </Switch>
