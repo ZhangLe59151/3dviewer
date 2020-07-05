@@ -1,0 +1,34 @@
+{
+  "presets": [
+      [
+          "@babel/preset-env",
+          {
+              "useBuiltIns": "usage",
+              "targets": {
+                  "browsers": ["last 2 versions", "safari >= 7"]
+              },
+              "modules": false,
+              "corejs": 3
+          }
+      ],
+      "@babel/preset-react"
+  ],
+  "plugins": [
+      "@babel/plugin-syntax-dynamic-import", ["import", {
+          "libraryName": "antd",
+          "libraryDirectory": "es",
+          "style": true
+      }]
+  ],
+  "env": {
+      "development": {
+          "plugins": [
+              ["babel-plugin-styled-components", {
+                  "displayName": true,
+                  "fileName": false
+              }],
+              "react-hot-loader/babel"
+          ]
+      }
+  }
+}
