@@ -6,7 +6,7 @@
   "scripts": {
     "build:staging": "webpack --config=webpack.config.prod.js --env.MODE=staging --display=verbose --color --progress",
     "serve:staging": "webpack-dev-server --config=webpack.config.prod.js --env.MODE=staging --display=verbose --color --progress --profile",
-    "build": "webpack --config=webpack.config.prod.js --env.MODE=production --display=verbose --color --progress",
+    "build": "webpack --config=webpack.config.dev.js --env.MODE=production --display=verbose --color --progress --build-optimizer=false",
     "serve": "webpack-dev-server --config=webpack.config.dev.js --env.MODE=development --display=verbose --color --progress --profile --hot",
     "serve:production": "webpack-dev-server --config=webpack.config.prod.js --env.MODE=production --display=verbose --color --progress --profile --hot",
     "build:dev": "webpack --config=webpack.config.dev.js --env.MODE=development --display=verbose --color --progress",
@@ -107,8 +107,7 @@
     "socket.io-client": "^2.3.0",
     "stompjs": "^2.3.3",
     "style-loader": "^1.0.0",
-    "terser": "^4.8.0",
-    "terser-webpack-plugin": "^2.3.7",
+    "terser-webpack-plugin": "^2.1.2",
     "ts-jest": "^24.1.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.9.3",

@@ -90,19 +90,7 @@ module.exports = (env) => {
           // CHANGE HERE
           loader: 'url-loader',
           include: path.obj,
-        },
-        {
-          test: /\.(png|gif|jpg|svg)$/,
-          include: path.images,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: 'client/assets/[name]-[hash].[ext]',
-              },
-            },
-          ],
-        },
+        }
       ],
     },
     resolve: {
