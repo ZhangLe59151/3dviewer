@@ -19,6 +19,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { RoughnessMipmapper } from 'three/examples/jsm/utils/RoughnessMipmapper.js';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
+import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -70,10 +71,17 @@ const Login = () => {
       objLoader.setMaterials(materials);
       objLoader.load('model/teapot_n_glass.obj', function(object) {
         console.info('sdj2 teapot_n_glass.obj', object);
+        console.info('sdj2 - position teapot_n_glass.obj', object.position);
+        console.info('sdj2 - parent teapot_n_glass.obj', object.parent);
+        let material = new THREE.MeshLambertMaterial({ color: 0x5c3a21 });
+        object.parent?.children.forEach(function(child) {
+          console.info('children,', child);
+        });
+        scene.add(object);
       });
     });
 
-    /* let loader = new GLTFLoader();
+    /* let loader = new GLTFLoader().setPath( 'models/' );;
     loader.load('model/teapot_n_glass.gltf', function(gltf) {
       console.info('obj1');
       console.info(gltf);
@@ -82,6 +90,31 @@ const Login = () => {
     camera.position.set(0, 25, 25);
     camera.lookAt(new THREE.Vector3(0, 0, 0));
     renderer.render(scene, camera);
+  };
+
+  const initGUI = () => {
+    let decals: any[] = [];
+    function removeDecals() {
+      decals.forEach(function(d) {
+        scene.remove(d);
+      });
+      decals = [];
+    }
+    let params = {
+      minScale: 10,
+      maxScale: 20,
+      rotate: true,
+      clear: function() {
+        removeDecals();
+      },
+    };
+
+    let gui = new GUI();
+    gui.add(params, 'minScale', 1, 30);
+    gui.add(params, 'maxScale', 1, 30);
+    gui.add(params, 'rotate');
+    gui.add(params, 'clear');
+    gui.open();
   };
 
   // todo 场景控制器初始化
