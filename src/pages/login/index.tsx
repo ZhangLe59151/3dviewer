@@ -74,9 +74,10 @@ const Login = () => {
         console.info('sdj2 - position teapot_n_glass.obj', object.position);
         console.info('sdj2 - parent teapot_n_glass.obj', object.parent);
         let material = new THREE.MeshLambertMaterial({ color: 0x5c3a21 });
-        object.parent?.children.forEach(function(child) {
-          console.info('children,', child);
-        });
+        object.scale.set(10, 10, 10);
+        scene.add(ambLight);
+        scene.add(pointLight);
+        scene.add(directionalLight);
         scene.add(object);
       });
     });
