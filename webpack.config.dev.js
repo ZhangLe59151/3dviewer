@@ -90,7 +90,7 @@ module.exports = (env) => {
           // CHANGE HERE
           loader: 'url-loader',
           include: path.obj,
-        }
+        },
       ],
     },
     resolve: {
@@ -145,7 +145,7 @@ module.exports = (env) => {
     plugins: [
       new webpack.DefinePlugin({ 'process.env.MODE': JSON.stringify(env.MODE) }),
       new HTMLPlugin({
-        title: 'Video KYC',
+        title: '3D viwer',
         template: path.resolve(__dirname, 'src/index.ejs'),
       }),
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),

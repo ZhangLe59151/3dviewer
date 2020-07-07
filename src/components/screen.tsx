@@ -44,7 +44,7 @@ export const Screen: React.FC<PropsWithChildren<{}>> = (props) => (
   <StyledWrapper>
     <Header className="screen-header">
       <img className="srceen-imgAudio" src={require('assets/images/whiteAudio.png')} />
-      <div className="screen-title">{i18n.t('Video KYC Platform')} </div>
+      <div className="screen-title">{i18n.t('Platform')} </div>
       <img className="srceen-imgClient" src={require('assets/images/clientIcon.png')} />
       <Dropdown overlay={MenuList} trigger={['click']}>
         <a className="dropdown-link" href="#">
@@ -58,7 +58,7 @@ export const Screen: React.FC<PropsWithChildren<{}>> = (props) => (
     <Content className="screen-content">
       <div className="screen-content-wrapper">{props.children}</div>
     </Content>
-    <Footer className="screen-footer">Monolopy Game ©2020 Created by ZhangLe</Footer>
+    <Footer className="screen-footer">3D viewer ©2020 Created</Footer>
   </StyledWrapper>
 );
 
