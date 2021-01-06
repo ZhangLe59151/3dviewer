@@ -25,7 +25,7 @@
     "@types/socket.io-client": "^1.4.32",
     "@types/websocket": "^1.0.0",
     "antd": "^4.4.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "core-js": "^3.2.1",
     "crypto-js": "^4.0.0",
     "disable-browser-back-navigation": "^0.1.0",
